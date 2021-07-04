@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+        <h2>ชื่อบทความ : {{ name }}</h2>
+        <h2>ผู้แต่ง : {{ author }}</h2>
+
+        <h2>มีป้ายกำกับ</h2>
+        <ul>
+           {% for  tag in tags %}
+               <li>{{ tag }}</li>
+           {% endfor %}
+        </ul>
+
+        <h2>ความนิยม</h2>
+        {% if rating > 3%}
+            <h3>ดีมาก</h3>
+        {% else %}
+            <h3>ไม่ได้รับความนิยม</h3>
+        {% endif %}
+{% endblock %}

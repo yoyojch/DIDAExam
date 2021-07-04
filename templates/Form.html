@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+ 
+<div class="container scroll-con">
+  <div class="form-group card p-3 card-cas">
+    <div class="text-center">
+      <b><h3>แบบฟอร์มเข้าจังหวัดสงขลา</h3>
+      <p>Songkhla Arrivals Form</p></b><br>
+    </div>
+
+  <div>
+    <p><b>กรุณากรอกข้อมูล (Please fill out the form)</b></p>
+
+    <form action="addForm" method="post">
+        {% csrf_token %} 
+
+        <div class="form-group">
+                <input type="radio" name="brone" type="SelectCitiID" checked>
+                <label for=""><b>เลขบัตรประชาชน / Citizen ID</b></label>
+                <br>
+                <input type="radio" name="brone" type="SelectPasID" onclick="msg()">
+                <label for=""><b>หนังสือเดินทาง / Passport ID</b></label>
+        </div>
+        <div class="form-group">
+                <label for=""><b>เลขบัตรประชาชน / Citizen ID</b></label>
+                <input type="text" class="form-control" name="idcard" id="idcard" maxlength="13" placeholder="กรุณากรอกเลขบัตรประจำตัวประชาชน (Citizen ID)" required >
+        </div>
+        
+        <div class="form-group">
+                <label for=""><b>รูปภาพบัตรประชาชน / Citizen ID image</b></label>
+                <input type="file" class="form-control" name="imagecard" id="imagecard" required />
+        </div>
+        <div class="form-group">
+                <label for=""><b>ชื่อ-นามสกุล / First name-Last name</b></label>
+                <input type="text" class="form-control" name="name"  id="name" placeholder="กรุณากรอกชื่อ (Name)" id="name"  required >
+        </div>
+        <div class="form-group">
+                <label for=""><b>เบอร์โทร / Phone number</b></label>
+                <input type="tel" class="form-control" name="tel" maxlength="10" id="tel"   placeholder="กรุณากรอกเบอร์โทรศัพท์ (Phone number)"  required >
+        </div>
+
+        <br>
+          
+        <div><center>
+        <input type="button" value="ย้อนกลับ (Back)" class="btn btn-primary" onclick="history.back()">
+        <input type="submit" value="ถัดไป (Next)" class="btn btn-primary">
+        </div>
+    </form>
+    </div>
+  </div>   
+<br>
+</div>
+
+{% endblock %}

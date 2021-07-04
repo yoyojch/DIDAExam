@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="container scroll-con">
+  <div class="form-group card p-3 card-cas">
+    <div class="text-center">
+      <b><h3>แบบฟอร์มเข้าจังหวัดสงขลา</h3>
+      <p>Songkhla Arrivals Form</p></b><br> 
+    </div>
+
+    <div>
+    <p><b>ท่านเดินทางมาจากที่ใด <br>
+    (Where did you come from?)</b></p>
+
+    <form action="addForm2" method="post">
+        {% csrf_token %} 
+
+        <div class="form-group">
+                <label for=""><b>จังหวัด / Province</b></label>
+                <input type="text" class="form-control" name="province1" placeholder="กรุณากรอกจังหวัด (Province)" required >
+        </div> 
+        <div class="form-group">
+                <label for=""><b>อำเภอ / Districts</b></label>
+                <input type="text" class="form-control" name="districts1" placeholder="กรุณากรอกอำเภอ (Districts)"  required >
+        </div>
+        <div class="form-group">
+                <label for=""><b>ตำบล / Sub-District</b></label>
+                <input type="tel" class="form-control" name="subdistrict1" placeholder="กรุณากรอกตำบล (Sub-District)"  required >
+        </div>
+
+    <br>
+    <p><b>ท่านกำลังจะเดินทางไปที่ใด <br>
+    (Where are you going?)</b></p>
+
+        <div class="form-group">
+                <label for=""><b>จังหวัด / Province</b></label>
+                <input type="text" class="form-control" name="province2" placeholder="กรุณากรอกจังหวัด (Province)" required >
+        </div> 
+        <div class="form-group">
+                <label for=""><b>อำเภอ / Districts</b></label>
+                <input type="text" class="form-control" name="districts2" placeholder="กรุณากรอกอำเภอ (Districts)"  required >
+        </div>
+        <div class="form-group">
+                <label for=""><b>ตำบล / Sub-District</b></label>
+                <input type="tel" class="form-control" name="subdistrict2" placeholder="กรุณากรอกตำบล (Sub-District)"  required >
+        </div>
+
+        <br>
+
+            <input type="hidden" class="form-control" name="name" id="name"  value="{{ name }}">
+            <input type="hidden" class="form-control" name="tel" id="tel"  value="{{ tel }}">
+         
+        <div><center>
+                <input type="button" value="ย้อนกลับ (Back)" class="btn btn-primary" onclick="history.back()">
+                <input type="submit" value="ถัดไป (Next)" class="btn btn-primary">
+        </div>
+    </form>
+    </div>
+    
+
+  </div>
+<br>
+</div>
+
+
+{% endblock %}

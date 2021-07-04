@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>แบบฟอร์มบันทึกผู้สุ่มตรวจน้ำลาย สำหรับสถานีขนส่ง</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ 
+  <link rel="preconnect" href="https://fonts.gstatic.com"> 
+  <link href="https://fonts.googleapis.com/css2?family=Prompt&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.rawgit.com/mgalante/jquery.redirect/master/jquery.redirect.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+  <!-- Datatable JS -->
+  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.6.5/js/dataTables.buttons.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.6.5/js/buttons.print.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.6.4/js/buttons.colVis.min.js"></script>
+
+  <!-- Datatable CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.css">
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js"></script> 
+  
+  <!-- sweetalert -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+  
+</head>
+{% load static %}
+<style type="text/css">
+  body {
+        font-family: 'Prompt', sans-serif;
+        background-color: #ffffff;
+         height: 100%;
+        /* height: calc(var(--vh, 1vh) * 100); */ 
+  }
+
+
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+    }
+    .btn-lg {
+      width: 100%;
+      margin-bottom: 35px;
+    }
+  }
+  .btn-sky{
+    width: 100%;
+    /* height: 80px; */
+    color: #fff;
+    background: #003c71;
+    border-color: #003c71;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.12);
+    box-shadow: 3px 3px 15px 0px rgba(45,45,45,.4);
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn-sky:hover{
+    border: 1px solid #003c71;
+    background-color:#fff;
+    color: #003c71;
+  }
+
+  .btn-back{
+    width: 100%;
+    /* height: 80px; */
+    color: #fff;
+    background: #333333;
+    border-color: #000000;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.12);
+    box-shadow: 3px 3px 15px 0px rgba(45,45,45,.4); 
+    /* box-shadow: 0 2px 0 rgba(0,0,0,.045); */
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btn-back:hover{
+    border: 1px solid #003c71;
+    background-color:#fff;
+    color: #003c71;
+  }
+
+  .scroll-con{
+    padding-top: 5%;
+    /* overflow: hidden;
+    height:200vh; */
+   
+  }
+  
+
+  .img-logo{
+    width: 70px;
+  }
+
+  input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    }
+
+    /* Text color for the label */
+    input[type="checkbox"]+span {
+    cursor: pointer;
+    font: 16px sans-serif;
+    color: black;
+    }
+
+    /* Checkbox un-checked style */
+    input[type="checkbox"]+span:before {
+    content: '';
+    border: 2px solid #003c71;
+    border-radius: 3px;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-right: 0.5em;
+    margin-top: 0.5em;
+    vertical-align: -2px;
+    }
+
+    /* Checked checkbox style (in this case the background is green #e7ffba, change this to change the color) */
+    input[type="checkbox"]:checked+span:before {
+    /* NOTE: Replace the url with a path to an SVG of a checkmark to get a checkmark icon */
+    background-image: url('{% static 'img/long-check-mark1.png' %}');
+    background-repeat: no-repeat;
+    background-position: center;
+    /* The size of the checkmark icon, you may/may not need this */
+    background-size: 20px;
+    border-radius: 2px;
+    background-color: #003c71;
+    color: white;
+    }
+
+    /* Adding a dotted border around the active tabbed-into checkbox */
+    input[type="checkbox"]:focus+span:before,
+    input[type="checkbox"]:not(:disabled)+span:hover:before {
+    /* Visible in the full-color space */
+    box-shadow: 0px 0px 0px 2px rgb(255, 187, 0);
+
+    /* Visible in Windows high-contrast themes
+        box-shadow will be hidden in these modes and
+        transparency will not be hidden in high-contrast
+        thus box-shadow will not show but the outline will
+        providing accessibility */
+    outline-color: transparent; /*switch to transparent*/
+    outline-width: 2px;
+    outline-style: dotted;
+    }
+
+
+    /* Disabled checkbox styles */
+    input[type="checkbox"]:disabled+span {
+    cursor: default;
+    color: black;
+    opacity: 0.5;
+    }
+
+    .footer {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: #ffffff;
+      color: #003c71;
+      text-align: center;
+    }
+
+    a:hover {
+      /* background-color: rgb(238, 194, 0); */
+      color: rgb(238, 194, 0);
+      }
+
+    a{
+      color: rgb(255, 255, 255);
+    }
+
+    .a-icon:hover {
+      /* background-color: rgb(238, 194, 0); */
+      color: rgb(238, 194, 0);
+      }
+
+    .a-icon{
+      color: rgb(0, 0, 0);
+    }
+
+    .img-icon{
+      width: 30px;
+    }
+ 
+    .img-icon:hover {
+      width: 35px;
+    }
+    .btn-link {
+        background-color: rgb(255, 255, 255) !important;
+        color: rgb(0, 0, 0) !important;
+    }
+</style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark"  style="background-color: #003c71">
+     
+    <a class="navbar-brand" href=""> <img  height="40" src="{% static 'img/PSU-Logo.png' %}" alt="" /></a> 
+   
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+            </li>
+          </ul>
+          <a class="nav-link" style="text-align: center;" data-toggle="modal" style="height: 100px;" data-target="#LoginModal"><i class="fas fa-sign-out-alt"></i> เข้าสู่ระบบ</a>
+        </div>
+    </nav>
+      <div id="maindiv" class="container">
+          {% block content %}
+
+          {% endblock %}
+      </div>
+
+      <footer class="text-center">
+        <img class="img-logo" style="width: 50px;margin:5px;" src="{% static 'img/logo-songkhla.png' %}"> 
+        <img class="img-logo" src="{% static 'img/DRii-Logo.png' %}"> 
+        <img class="img-logo" src="{% static 'img/Songklanagarin-Hospital-Icon.png' %}"> 
+        <img class="img-logo" width="50%" src="{% static 'img/.png' %}"> 
+        <img class="img-logo" style="width: 60px;" src="{% static 'img/ppho.png' %}"> 
+        <img class="img-logo" src="{% static 'img/drii.png' %}"> 
+        <p class="w3-medium" style="color: #c2bebe;">Version 1.0<a href="https://dida.medicine.psu.ac.th" target="_blank"></a></p>
+      </footer> 
+</body>
+
+</html>
